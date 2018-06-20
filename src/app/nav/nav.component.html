@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="loggedIn()">
+    <a class="navbar-brand" outerLinkActive="active" [routerLink]="['/home']">Prime Express</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExample02">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" routerLinkActive="active" [routerLink]="['/transporte']">Transporte</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" routerLinkActive="active" [routerLink]="['/transporteLista']">Lista Transporte</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" [routerLink]="['/entrega']">Entrega</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-md-0">
+            <a class="btn btn-secondary" (click)="logout()">Sign up</a>
+        </form>
+    </div>
+</nav>

@@ -1,0 +1,32 @@
+<!--
+<div *ngIf="!registerMode" >
+  <h1>Find your matches</h1>
+  <p>Come on in to view your matches... All you need to do is sign up!</p>
+  <div>
+    <button type="button" class="btn btn-primary btn-lg main-button" (click)="registerToggle()">Register</button>
+    <button type="button" class="btn btn-info btn-lg main-button">Learn More</button>
+  </div>
+</div>
+
+<div *ngIf="registerMode"  >
+  <div >
+    <app-register (cancelRegister)="cancelRegisterMode($event)"></app-register>
+  </div>
+</div>
+-->
+
+
+  <form class="form-signin" *ngIf="!loggedIn()" #loginForm="ngForm" (ngSubmit)="login()">
+    <img class="mb-4" src="assets/img/LOGOPRIME.jpg" alt="" width="400" height="300" class="text-center">
+    <h1 class="h3 mb-3 font-weight-normal">Por favor ingrese</h1>
+    <label for="usuario" class="sr-only" >Usuario</label>
+    <input type="text" id="inputUsuario" class="form-control" placeholder="Username" required autofocus 
+        name="username" [(ngModel)]="model.username">
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required 
+        name="password" [(ngModel)]="model.password">
+    <br>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!loginForm.valid">Ingresar</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+  </form>
+
