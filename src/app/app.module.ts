@@ -8,9 +8,16 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpModule,
+    FormsModule,
+    BsDropdownModule.forRoot(),
+    APP_ROUTING
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AlertifyService
+  ],
   bootstrap: [AppComponent]
-})
+} )
 export class AppModule { }
