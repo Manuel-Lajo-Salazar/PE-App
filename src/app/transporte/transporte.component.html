@@ -1,36 +1,166 @@
-<div class="col-md-8 order-md-1 m-3">
+<div class="container pt-3">
+    <h3>Nuevo Transporte</h3>
+</div>
+<div class="container" [formGroup]="form">
+    <div class="card-deck pt-3 pb-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <label for="vehiculo">Vehículo</label>
+                        <ng-dropdown [data]="dummyData"></ng-dropdown>
+                        <div class="input-group" id="vehiculo">
+                            <input formControlName="vehiculo"
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Vehículo"
+                                    [ngClass]="{'is-invalid': formValidation('vehiculo')}">
+                            <div class="input-group-append"><div class="input-group-text"><i class="fa fa-search"></i></div></div>
+                            <div class="invalid-feedback">Debe de buscar el vehículo</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label style="margin-top: 2.5rem; font-weight: 700; width: 200px;">Nº de Transporte:</label>
+                        <span>T-002</span>
+                    </div>
+                </div>
+                <div style="border: 1px solid black" class="mt-3 p-2">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <span>El camion con placa ADJ 896 tiene:</span><br/>
+                            <span>- Capacidad de carga de 23,500 kg</span><br/>
+                            <span>- Capacidad volumetrica de Alto: 3,30 m Ancho: 2,50 m Largo: 15,00 m</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-deck pt-3 pb-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 mb-3">
+                        <label for="sucSalida">Sucursal de Salida</label>
+                        <!-- <input type="text" class="form-control" placeholder="Sucursal Salida" required name="SucursalSalida" [(ngModel)]="model.SucursalSalidaId" /> -->
+                        <input formControlName="sucursalSalida"
+                                type="text"
+                                class="form-control"
+                                placeholder="Sucursal Salida"
+                                [ngClass]="{'is-invalid': formValidation('sucursalSalida')}">
+                        <div class="invalid-feedback">Por favor seleccione la Sucursal de Salida</div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label for="fecSalida">Fecha - Hora Salida</label>
+                        <div class="form-group">
+                            <div class="input-group date">
+                                <input type="text" class="form-control datetimepicker-input" id="datetimepicker2" />
+                                <div class="input-group-append">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 mb-3">
+                        <label for="sucLlegada">Sucursal de Llegada</label>
+                        <!-- <input type="text" class="form-control" placeholder="Sucursal Llegada" required name="SurcursalLlegada" [(ngModel)]="modelSucursalLlegadaId." /> -->
+                        <input formControlName="sucursalLlegada"
+                                type="text"
+                                class="form-control"
+                                placeholder="Sucursal Llegada"
+                                [ngClass]="{'is-invalid': formValidation('sucursalLlegada')}">
+                        <div class="invalid-feedback">Por favor seleccione la Sucursal de Llegada</div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label for="fecLlegada">Fecha - Hora Llegada</label>
+                        <div class="form-group">
+                            <div class="input-group date">
+                                <input type="text" class="form-control datetimepicker-input" id="datetimepicker1" />
+                                <div class="input-group-append">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 mb-3">
+                        <label for="chofer">Chofer</label>
+                        <!-- <input type="text" class="form-control" placeholder="Chofer" required name="ChoferId" [(ngModel)]="model.ChoferId" /> -->
+                        <input formControlName="chofer"
+                                type="text"
+                                class="form-control"
+                                placeholder="Chofer"
+                                [ngClass]="{'is-invalid': formValidation('chofer')}">
+                        <div class="invalid-feedback">Por favor seleccione el Chofer</div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 mb-3">
+                        <label for="auxiliar">Auxiliar</label>
+                        <!-- <input type="text" class="form-control" placeholder="Auxiliar" required name="AuxiliarId" [(ngModel)]="model.AuxiliarId" /> -->
+                        <input formControlName="auxiliar"
+                                type="text"
+                                class="form-control"
+                                placeholder="Auxiliar"
+                                [ngClass]="{'is-invalid': formValidation('auxiliar')}">
+                        <div class="invalid-feedback">Por favor seleccione el Auxiliar</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 mb-3">
+                        <label for="tipoTransporte">Tipo Transporte</label>
+                        <!-- <input type="text" class="form-control" placeholder="Tipo Transporte" required name="TipoTransporte" [(ngModel)]="model.TipoTransporte" /> -->
+                        <input formControlName="tipoTransporte"
+                                type="text"
+                                class="form-control"
+                                placeholder="Tipo Transporte"
+                                [ngClass]="{'is-invalid': formValidation('tipoTransporte')}">
+                        <div class="invalid-feedback">Por favor seleccione el Tipo Transporte</div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div style="margin-top: 2.5rem">
+                            <input type="checkbox" id="cbox" value="checkbox_val"><label for="cbox">Está Activo</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 col-sm-12 mb-3">
+            <button type="button" class="btn btn-danger">Eliminar</button>
+        </div>
+        <div class="col-md-4 col-sm-12 mb-3">
+            <button type="button" class="btn btn-secondary mr-3">Grabar y añadir otro</button>
+            <button type="button" class="btn btn-primary" (click)="create()">Grabar</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-md-8 order-md-1 m-3" *ngIf="false">
     <h4 class="mb-3">Nuevo Transporte</h4>
-
     <form class="needs-validation m-2" novalidate #registerForm="ngForm" (ngSubmit)="create()">
-
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="vehiculo">Vehículo</label>
                 <div class="input-group" id="vehiculo">
                     <input type="text" class="form-control" placeholder="Vehiculo" required name="Vehiculo" [(ngModel)]="model.VehiculoId" />
-                    <div class="input-group-append">
-                        <div class="input-group-text"><i class="fa fa-search"></i></div>
-                    </div>
+                    <div class="input-group-append"><div class="input-group-text"><i class="fa fa-search"></i></div></div>
                 </div>
-                <div class="invalid-feedback">
-                    Debe de buscar el vehículo
-                </div>
+                <div class="invalid-feedback">Debe de buscar el vehículo</div>
             </div>
             <div class="col-md-6 mb-3">
                 <label for="nroTransporte">Nº de Transporte</label>
                 <label class="form-control" id="nroTransporte" placeholder="" value="">T-002</label>
             </div>
         </div>
-
         <div class="mb-3">
-            <label for="detVehiculo">El camión XXxxxxxx
-      XXxxxxxxxx
-      xxxxx</label>
-            <br>
-            <br>
+            <label for="detVehiculo">El camión XXxxxxxx</label><br><br>
         </div>
-
-
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="sucSalida">Sucursal de Salida</label>
@@ -49,9 +179,7 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
         <div class="row">
             <div class="col-md-6 mb-3">
@@ -72,7 +200,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="row">
             <div class="col-md-6 mb-3">
@@ -89,7 +216,6 @@
                     Por favor seleccione el Auxiliar.
                 </div>
             </div>
-
         </div>
         <div class="row m-3">
             <div class="col-md-6 mb-3">
@@ -98,10 +224,7 @@
             <div class="col-md-6 mb-3">
                 <button type="button" class="btn btn-secondary">Grabar y añadir otro</button>
                 <button type="button" class="btn btn-primary" type="submit">Grabar</button>
-
             </div>
         </div>
-
     </form>
-
 </div>

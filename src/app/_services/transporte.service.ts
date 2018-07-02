@@ -25,7 +25,7 @@ export class TransporteService {
       .catch(this.handleError);
   }
 
-  create(model: any) {
+  create(model: Transporte) {
     return this.authHttp.post(this.baseUrl + 'transportes/create', model, this.requestOptions())
     .catch(this.handleError);
   }

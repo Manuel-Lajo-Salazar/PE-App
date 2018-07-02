@@ -1,5 +1,5 @@
 import { AuthModule } from './auth/auth.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -19,7 +19,7 @@ import { TransporteService } from './_services/transporte.service';
 import { TransporteListaComponent } from './transporte-lista/transporte-lista.component';
 import { TransporteListaResolver } from './_resolvers/transporte-lista.resolver';
 import { AuthGuard } from './_guards/auth.guard';
-
+import { DropdownModule } from 'angular-dropdown-component';
 
 
 @NgModule({
@@ -37,9 +37,11 @@ import { AuthGuard } from './_guards/auth.guard';
     BrowserModule,
     HttpModule,
     FormsModule,
+    ReactiveFormsModule,
     BsDropdownModule.forRoot(),
     APP_ROUTING,
-    AuthModule
+    AuthModule,
+    DropdownModule
   ],
   providers: [
     AuthService,
