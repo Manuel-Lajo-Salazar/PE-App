@@ -12,13 +12,7 @@ import { Transporte } from './../_models/Transporte';
 export class TransporteComponent implements OnInit {
   model: Transporte;
   form: FormGroup;
-  dummyData = [{
-    id: 1,
-    name: "Foo"
-  }, {
-    id: 2,
-    name: "Bar"
-  }];
+  dummyData = [{ id: 1, name: -'Foo' }, { id: 2, name: 'Bar' }];
 
   constructor(
     private transporteService: TransporteService,
@@ -59,8 +53,7 @@ export class TransporteComponent implements OnInit {
       chofer.markAsDirty();
       // auxiliar.markAsDirty();
       tipoTransporte.markAsDirty();
-    }
-    else {
+    } else {
       this.model = new Transporte(
         Number(vehiculo.value),
         Number(sucursalSalida.value),
