@@ -3,8 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { AlertifyService } from '../_services/alertify.service';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Transporte } from './../_models/Transporte';
+import { AutoComplete } from '../_models/AutoComplete';
+import { ActivatedRoute } from '@angular/router';
 
-@Component( {
+@Component({
   selector: 'app-transporte',
   templateUrl: './transporte.component.html',
   styleUrls: ['./transporte.component.css']
@@ -12,15 +14,55 @@ import { Transporte } from './../_models/Transporte';
 export class TransporteComponent implements OnInit {
   model: Transporte;
   form: FormGroup;
-  dummyData = [{ id: 1, name: -'Foo' }, { id: 2, name: 'Bar' }];
+
+  loadIcon: boolean;
+  errorMessage;
+
+  configVehiculo: AutoComplete;
+  vehiculo: any;
+  vehiculos = [];
+
+  configSucursalSalida: AutoComplete;
+  sucursalSalida: any;
+  sucursalesSalida = [];
+
+  configSucursalLlegada: AutoComplete;
+  sucursalLlegada: any;
+  sucursalesLlegada = [];
+
+  configChofer: AutoComplete;
+  chofer: any;
+  choferes = [];
+
+  configAuxiliar: AutoComplete;
+  auxiliar: any;
+  auxiliares = [];
+
+  tiposTransporte = [];
 
   constructor(
     private transporteService: TransporteService,
     private alertify: AlertifyService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private _route: ActivatedRoute) { }
 
   ngOnInit() {
     this.createForm();
+    this.setConfigVehiculo();
+    this.setConfigSucursalSalida();
+    this.setConfigSucursalLlegada();
+    this.setConfigChofer();
+    this.setConfigAuxiliar();
+    this.getTiposTransporte();
+
+    const id = this._route.snapshot.paramMap.get('id');
+    this.transporteService.getTransporte(id)
+      .subscribe(response => {
+        console.log(response);
+        this.loadTransporte(response);
+      }, error => {
+        console.log(error);
+      });
   }
 
   createForm() {
@@ -34,43 +76,244 @@ export class TransporteComponent implements OnInit {
     });
   }
 
+
+  private setConfigVehiculo() {
+    this.configVehiculo = new AutoComplete(
+      'vehiculo',
+      this.form,
+      ['placa', 'tipo', 'marca'],
+      this.vehiculos,
+      false,
+      this.loadIcon,
+      'Buscar Vehículo',
+      'id',
+      ['placa', 'tipo,marca', 'carga'],
+      []
+    );
+  }
+
+  getVehiculos(filter: string) {
+    this.configVehiculo.loadIcon = true;
+    this.transporteService.getVehiculos(filter)
+      .subscribe(vehiculos => {
+        this.configVehiculo.searchList = vehiculos;
+        this.configVehiculo.loadIcon = false;
+      }, error => {
+        this.errorMessage = <any>error;
+        this.configVehiculo.loadIcon = false;
+      });
+  }
+
+  setVehiculo(selectedItem: any) {
+    this.vehiculo = selectedItem;
+  }
+
+
+  private setConfigSucursalSalida() {
+    this.configSucursalSalida = new AutoComplete(
+      'sucursalSalida',
+      this.form,
+      ['nombre'],
+      this.sucursalesSalida,
+      false,
+      this.loadIcon,
+      'Buscar Sucursal de salida',
+      'id',
+      ['nombre'],
+      []
+    );
+  }
+
+  getSucursalesSalida(filter: string) {
+    this.configSucursalSalida.loadIcon = true;
+    this.transporteService.getSucursales(filter)
+      .subscribe(sucursales => {
+        this.configSucursalSalida.searchList = sucursales;
+        this.configSucursalSalida.loadIcon = false;
+      }, error => {
+        this.errorMessage = <any>error;
+        this.configSucursalSalida.loadIcon = false;
+      });
+  }
+
+  setSucursalSalida(selectedItem: any) {
+    this.sucursalSalida = selectedItem;
+  }
+
+
+  private setConfigSucursalLlegada() {
+    this.configSucursalLlegada = new AutoComplete(
+      'sucursalLlegada',
+      this.form,
+      ['nombre'],
+      this.sucursalesLlegada,
+      false,
+      this.loadIcon,
+      'Buscar Sucursal de llegada',
+      'id',
+      ['nombre'],
+      []
+    );
+  }
+
+  getSucursalesLlegada(filter: string) {
+    this.configSucursalLlegada.loadIcon = true;
+    this.transporteService.getSucursales(filter)
+      .subscribe(sucursales => {
+        this.configSucursalLlegada.searchList = sucursales;
+        this.configSucursalLlegada.loadIcon = false;
+      }, error => {
+        this.errorMessage = <any>error;
+        this.configSucursalLlegada.loadIcon = false;
+      });
+  }
+
+  setSucursalLlegada(selectedItem: any) {
+    this.sucursalLlegada = selectedItem;
+  }
+
+
+  private setConfigChofer() {
+    this.configChofer = new AutoComplete(
+      'chofer',
+      this.form,
+      ['nombre', 'dni'],
+      this.choferes,
+      false,
+      this.loadIcon,
+      'Buscar Chofer',
+      'id',
+      ['nombre', 'dni'],
+      []
+    );
+  }
+
+  getChoferes(filter: string) {
+    this.configChofer.loadIcon = true;
+    this.transporteService.getChoferes(filter)
+      .subscribe(choferes => {
+        this.configChofer.searchList = choferes;
+        this.configChofer.loadIcon = false;
+      }, error => {
+        this.errorMessage = <any>error;
+        this.configChofer.loadIcon = false;
+      });
+  }
+
+  setChofer(selectedItem: any) {
+    this.chofer = selectedItem;
+  }
+
+
+  private setConfigAuxiliar() {
+    this.configAuxiliar = new AutoComplete(
+      'auxiliar',
+      this.form,
+      ['nombre', 'dni'],
+      this.auxiliares,
+      false,
+      this.loadIcon,
+      'Buscar Auxiliar',
+      'id',
+      ['nombre', 'dni'],
+      []
+    );
+  }
+
+  getAuxiliares(filter: string) {
+    this.configAuxiliar.loadIcon = true;
+    this.transporteService.getAuxiliares(filter)
+      .subscribe(auxiliares => {
+        this.configAuxiliar.searchList = auxiliares;
+        this.configAuxiliar.loadIcon = false;
+      }, error => {
+        this.errorMessage = <any>error;
+        this.configAuxiliar.loadIcon = false;
+      });
+  }
+
+  setAuxiliar(selectedItem: any) {
+    this.auxiliar = selectedItem;
+  }
+
+
+  getTiposTransporte() {
+    this.transporteService.getTiposTransporte()
+      .subscribe(tiposTransporte => {
+        this.tiposTransporte = tiposTransporte;
+      }, error => {
+        this.errorMessage = <any>error;
+      });
+  }
+
+
   formValidation(controlName: string): boolean {
     const control = this.form.get(controlName);
     return (control.dirty && control.errors) ? true : false;
   }
 
   create() {
-    const vehiculo: AbstractControl = this.form.get('vehiculo');
-    const sucursalSalida: AbstractControl = this.form.get('sucursalSalida');
-    const sucursalLlegada: AbstractControl = this.form.get('sucursalLlegada');
-    const chofer: AbstractControl = this.form.get('chofer');
-    const auxiliar: AbstractControl = this.form.get('auxiliar');
     const tipoTransporte: AbstractControl = this.form.get('tipoTransporte');
     if (!this.form.valid) {
-      vehiculo.markAsDirty();
-      sucursalSalida.markAsDirty();
-      sucursalLlegada.markAsDirty();
-      chofer.markAsDirty();
-      // auxiliar.markAsDirty();
+      this.form.get('vehiculo').markAsDirty();
+      this.form.get('sucursalSalida').markAsDirty();
+      this.form.get('sucursalLlegada').markAsDirty();
+      this.form.get('chofer').markAsDirty();
+      this.form.get('auxiliar').markAsDirty();
       tipoTransporte.markAsDirty();
     } else {
       this.model = new Transporte(
-        Number(vehiculo.value),
-        Number(sucursalSalida.value),
-        Number(sucursalLlegada.value),
-        Number(chofer.value),
-        Number(auxiliar.value),
-        tipoTransporte.value
+        1,
+        true,
+        null,
+        null,
+        Number(this.sucursalSalida.id),
+        this.sucursalSalida.nombre,
+        Number(this.sucursalLlegada.id),
+        this.sucursalLlegada.nombre,
+        Number(this.chofer.id),
+        this.chofer.nombre,
+        Number(this.auxiliar.id),
+        this.auxiliar.nombre,
+        Number(this.vehiculo.id),
+        this.vehiculo.placa,
+        this.vehiculo.carga,
+        this.vehiculo.alto,
+        Number(tipoTransporte.value)
       );
       console.log(this.model);
-      this.transporteService.create(this.model).subscribe(() => {
-        // this.alertify.success('Transporte creado');
-        console.log('creado');
-      }, error => {
-        // this.alertify.error(error);
-        console.log(error);
-      });
-    }    
+      this.transporteService.createTransporte(this.model)
+        .subscribe(response => {
+          console.log(response);
+        }, error => {
+          console.log(error);
+        });
+
+      // this.transporteService.create(this.model).subscribe(() => {
+      //   // this.alertify.success('Transporte creado');
+      //   console.log('creado');
+      // }, error => {
+      //   // this.alertify.error(error);
+      //   console.log(error);
+      // });
+    }
+  }
+
+  loadTransporte(transporte: Transporte) {
+    this.model = transporte;
+
+    this.vehiculo = { id: transporte.vehiculoId, placa: transporte.placa, carga: transporte.carga, alto: transporte.volumetria };
+    this.sucursalSalida = { id: transporte.sucursalSalidaId, nombre: transporte.sucursalSalidaNombre };
+    this.sucursalLlegada = { id: transporte.sucursalLlegadaId, nombre: transporte.sucursalLlegadaNombre };
+    this.chofer = { id: transporte.choferId, nombre: transporte.choferNombre };
+    this.auxiliar = { id: transporte.auxiliarId, nombre: transporte.auxiliarNombre };
+    
+    this.form.get('vehiculo').setValue(transporte.placa);
+    this.form.get('sucursalSalida').setValue(transporte.sucursalSalidaNombre);
+    this.form.get('sucursalLlegada').setValue(transporte.sucursalLlegadaNombre);
+    this.form.get('chofer').setValue(transporte.choferNombre);
+    this.form.get('auxiliar').setValue(transporte.auxiliarNombre);
+    this.form.get('tipoTransporte').setValue(transporte.tipoTransporte);
   }
 
 }

@@ -3,6 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -20,6 +21,8 @@ import { TransporteListaComponent } from './transporte-lista/transporte-lista.co
 import { TransporteListaResolver } from './_resolvers/transporte-lista.resolver';
 import { AuthGuard } from './_guards/auth.guard';
 import { DropdownModule } from 'angular-dropdown-component';
+import { AutoCompleteComponent } from './shared/auto-complete/auto-complete.component';
+import { LocationService } from './_services/location.service';
 
 
 @NgModule({
@@ -31,7 +34,8 @@ import { DropdownModule } from 'angular-dropdown-component';
     ValueComponent,
     TransporteComponent,
     EntregaComponent,
-    TransporteListaComponent
+    TransporteListaComponent,
+    AutoCompleteComponent
 ],
   imports: [
     BrowserModule,
@@ -41,14 +45,16 @@ import { DropdownModule } from 'angular-dropdown-component';
     BsDropdownModule.forRoot(),
     APP_ROUTING,
     AuthModule,
-    DropdownModule
+    DropdownModule,
+    HttpClientModule
   ],
   providers: [
     AuthService,
     AlertifyService,
     AuthGuard,
     TransporteService,
-    TransporteListaResolver
+    TransporteListaResolver,
+    LocationService
   ],
   bootstrap: [AppComponent]
 } )
