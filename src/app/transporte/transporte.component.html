@@ -127,8 +127,9 @@
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <div style="margin-top: 2.5rem">
-                            <input type="checkbox" id="cbox" value="checkbox_val">
-                            <label for="cbox">Está Activo</label>
+                            <!-- <input type="checkbox" name="activo" formControlName="activo">
+                            <label for="activo">Está Activo</label> -->
+                            <input type="text" class="form-control" placeholder="some ph" bsDatepicker formControlName="range" />
                         </div>
                     </div>
                 </div>
@@ -145,106 +146,4 @@
             <button type="button" class="btn btn-primary" (click)="create()">Grabar</button>
         </div>
     </div>
-</div>
-
-
-<div class="col-md-8 order-md-1 m-3" *ngIf="false">
-    <h4 class="mb-3">Nuevo Transporte</h4>
-    <form class="needs-validation m-2" novalidate #registerForm="ngForm" (ngSubmit)="create()">
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label for="vehiculo">Vehículo</label>
-                <div class="input-group" id="vehiculo">
-                    <input type="text" class="form-control" placeholder="Vehiculo" required name="Vehiculo" [(ngModel)]="model.VehiculoId" />
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <i class="fa fa-search"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="invalid-feedback">Debe de buscar el vehículo</div>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label for="nroTransporte">Nº de Transporte</label>
-                <label class="form-control" id="nroTransporte" placeholder="" value="">T-002</label>
-            </div>
-        </div>
-        <div class="mb-3">
-            <label for="detVehiculo">El camión XXxxxxxx</label>
-            <br>
-            <br>
-        </div>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label for="sucSalida">Sucursal de Salida</label>
-                <input type="text" class="form-control" placeholder="Sucursal Salida" required name="SucursalSalida" [(ngModel)]="model.SucursalSalidaId"
-                />
-                <div class="invalid-feedback">
-                    Por favor seleccione la Sucursal de Salida
-                </div>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label for="fecSalida">Fecha-Hora Salida</label>
-                <div class="form-group">
-                    <div class="input-group date">
-                        <input type="text" class="form-control datetimepicker-input" id="datetimepicker2" />
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <i class="fa fa-calendar"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label for="sucLlegada">Sucursal de Llegada</label>
-                <input type="text" class="form-control" placeholder="Sucursal Llegada" required name="SurcursalLlegada" [(ngModel)]="model.SucursalLlegadaId"
-                />
-                <div class="invalid-feedback">
-                    Por favor seleccione la Sucursal de Llegada.
-                </div>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label for="fecLlegada">Fecha-Hora Llegada</label>
-                <div class="form-group">
-                    <div class="input-group date">
-                        <input type="text" class="form-control datetimepicker-input" id="datetimepicker1" />
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <i class="fa fa-calendar"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label for="chofer">Chofer</label>
-                <input type="text" class="form-control" placeholder="Chofer" required name="ChoferId" [(ngModel)]="model.ChoferId" />
-                <div class="invalid-feedback">
-                    Por favor seleccione el Chofer.
-                </div>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label for="auxiliar">Auxiliar</label>
-                <input type="text" class="form-control" placeholder="Auxiliar" required name="AuxiliarId" [(ngModel)]="model.AuxiliarId"
-                />
-                <div class="invalid-feedback">
-                    Por favor seleccione el Auxiliar.
-                </div>
-            </div>
-        </div>
-        <div class="row m-3">
-            <div class="col-md-6 mb-3">
-                <button type="button" class="btn btn-danger">Eliminar</button>
-            </div>
-            <div class="col-md-6 mb-3">
-                <button type="button" class="btn btn-secondary">Grabar y añadir otro</button>
-                <button type="button" class="btn btn-primary" type="submit">Grabar</button>
-            </div>
-        </div>
-    </form>
 </div>

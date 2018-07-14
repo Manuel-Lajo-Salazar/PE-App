@@ -40,6 +40,14 @@ export class TransporteComponent implements OnInit {
 
   tiposTransporte = [];
 
+  date: Date = new Date();
+  settings = {
+      bigBanner: true,
+      timePicker: false,
+      format: 'dd-MM-yyyy',
+      defaultOpen: true
+  };
+
   constructor(
     private transporteService: TransporteService,
     private alertify: AlertifyService,
@@ -54,6 +62,7 @@ export class TransporteComponent implements OnInit {
     this.setConfigChofer();
     this.setConfigAuxiliar();
     this.getTiposTransporte();
+    this.form.get('activo').setValue(true);
 
     const id = this._route.snapshot.paramMap.get('id');
     this.transporteService.getTransporte(id)
@@ -72,7 +81,9 @@ export class TransporteComponent implements OnInit {
       sucursalLlegada: ['', Validators.required],
       chofer: ['', Validators.required],
       auxiliar: ['', Validators.required],
-      tipoTransporte: ['', Validators.required]
+      tipoTransporte: ['', Validators.required],
+      activo: [false, []],
+      range: ['', []]
     });
   }
 
@@ -252,8 +263,9 @@ export class TransporteComponent implements OnInit {
     return (control.dirty && control.errors) ? true : false;
   }
 
-  create() {
+  create() {debugger;
     const tipoTransporte: AbstractControl = this.form.get('tipoTransporte');
+    const activo: AbstractControl = this.form.get('activo');
     if (!this.form.valid) {
       this.form.get('vehiculo').markAsDirty();
       this.form.get('sucursalSalida').markAsDirty();
@@ -264,7 +276,7 @@ export class TransporteComponent implements OnInit {
     } else {
       this.model = new Transporte(
         1,
-        true,
+        Boolean(activo.value),
         null,
         null,
         Number(this.sucursalSalida.id),
@@ -307,13 +319,14 @@ export class TransporteComponent implements OnInit {
     this.sucursalLlegada = { id: transporte.sucursalLlegadaId, nombre: transporte.sucursalLlegadaNombre };
     this.chofer = { id: transporte.choferId, nombre: transporte.choferNombre };
     this.auxiliar = { id: transporte.auxiliarId, nombre: transporte.auxiliarNombre };
-    
+
     this.form.get('vehiculo').setValue(transporte.placa);
     this.form.get('sucursalSalida').setValue(transporte.sucursalSalidaNombre);
     this.form.get('sucursalLlegada').setValue(transporte.sucursalLlegadaNombre);
     this.form.get('chofer').setValue(transporte.choferNombre);
     this.form.get('auxiliar').setValue(transporte.auxiliarNombre);
     this.form.get('tipoTransporte').setValue(transporte.tipoTransporte);
+    this.form.get('activo').setValue(transporte.activo);
   }
 
 }

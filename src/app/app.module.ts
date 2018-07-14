@@ -3,7 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -23,6 +23,8 @@ import { AuthGuard } from './_guards/auth.guard';
 import { DropdownModule } from 'angular-dropdown-component';
 import { AutoCompleteComponent } from './shared/auto-complete/auto-complete.component';
 import { LocationService } from './_services/location.service';
+import { AlertModule } from 'ngx-bootstrap';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 @NgModule({
@@ -46,7 +48,9 @@ import { LocationService } from './_services/location.service';
     APP_ROUTING,
     AuthModule,
     DropdownModule,
-    HttpClientModule
+    HttpClientModule,
+    AlertModule.forRoot(),
+    BsDatepickerModule.forRoot()
   ],
   providers: [
     AuthService,
