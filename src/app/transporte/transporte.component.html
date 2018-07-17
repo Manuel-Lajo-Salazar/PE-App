@@ -8,12 +8,6 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <label for="vehiculo">Vehículo</label>
-                        <!-- <div class="input-group" id="vehiculo">
-                            <input formControlName="vehiculo" type="text" class="form-control" placeholder="Vehículo" [ngClass]="{'is-invalid': formValidation('vehiculo')}">
-                            <div class="input-group-append">
-                                <div class="input-group-text"><i class="fa fa-search"></i></div>
-                            </div>
-                        </div> -->
                         <app-auto-complete
                             class="auto-complete"
                             id="vehiculo"
@@ -56,15 +50,13 @@
                             (filteredInput)="getSucursalesSalida($event)">
                         </app-auto-complete>
                     </div>
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-4 col-sm-12">
                         <label for="fecSalida">Fecha - Hora Salida</label>
-                        <div class="form-group">
-                            <div class="input-group date">
-                                <input type="text" class="form-control datetimepicker-input" id="datetimepicker2" />
-                                <div class="input-group-append">
-                                    <div class="input-group-text">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
+                        <div class="input-group date">
+                            <input type="text" class="form-control" id="fecSalida" placeholder="" bsDatepicker formControlName="fechaSalida" />
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <i class="fa fa-calendar"></i>
                                 </div>
                             </div>
                         </div>
@@ -81,15 +73,13 @@
                             (filteredInput)="getSucursalesLlegada($event)">
                         </app-auto-complete>
                     </div>
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-4 col-sm-12">
                         <label for="fecLlegada">Fecha - Hora Llegada</label>
-                        <div class="form-group">
-                            <div class="input-group date">
-                                <input type="text" class="form-control datetimepicker-input" id="datetimepicker1" />
-                                <div class="input-group-append">
-                                    <div class="input-group-text">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
+                        <div class="input-group date">
+                            <input type="text" class="form-control" id="fecLlegada" placeholder="" bsDatepicker formControlName="fechaLlegada" />
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <i class="fa fa-calendar"></i>
                                 </div>
                             </div>
                         </div>
@@ -127,9 +117,8 @@
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <div style="margin-top: 2.5rem">
-                            <!-- <input type="checkbox" name="activo" formControlName="activo">
-                            <label for="activo">Está Activo</label> -->
-                            <input type="text" class="form-control" placeholder="some ph" bsDatepicker formControlName="range" />
+                            <input type="checkbox" name="activo" formControlName="activo">
+                            <label for="activo" class="pl-2">Está Activo</label>
                         </div>
                     </div>
                 </div>
@@ -142,7 +131,7 @@
             <button type="button" class="btn btn-danger">Eliminar</button>
         </div>
         <div class="col-md-4 col-sm-12 mb-3">
-            <button type="button" class="btn btn-secondary mr-3">Grabar y añadir otro</button>
+            <button type="button" class="btn btn-secondary mr-3" (click)="testButtonAction()">Grabar y añadir otro</button>
             <button type="button" class="btn btn-primary" (click)="create()">Grabar</button>
         </div>
     </div>

@@ -23,11 +23,11 @@ export class TransporteService {
     private authHttp: AuthHttp,
     private _http: HttpClient) { }
 
-  getTransportes(): Observable<Transporte[]> {
-    return this.authHttp.get(this.baseUrl + 'transportes')
-      .map(response => <Transporte[]>response.json())
-      .catch(this.handleError);
-  }
+  // getTransportes(): Observable<Transporte[]> {
+  //   return this.authHttp.get(this.baseUrl + 'transportes')
+  //     .map(response => <Transporte[]>response.json())
+  //     .catch(this.handleError);
+  // }
 
   create(model: Transporte) {
     return this.authHttp.post(this.baseUrl + 'transportes/create', model, this.requestOptions())
@@ -90,6 +90,16 @@ export class TransporteService {
 
   getTransporte(id: any): Observable<any> {
     return this._http.get<any>(`${this.testUrl}/transportes/${id}`);
+  }
+
+  // para el autocomplete
+  getTransportes(filter: string): Observable<any[]> {
+    return this._http.get<any[]>(`${this.testUrl}/transportes`);
+  }
+
+  // para la búsqueda de Lista de Transportes
+  searchTransportes(transporte: any): Observable<any[]> {
+    return this._http.get<any[]>(`${this.testUrl}/transportes`);
   }
 
 }

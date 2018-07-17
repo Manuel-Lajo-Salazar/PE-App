@@ -9,6 +9,8 @@ import { TransporteListaComponent } from './transporte-lista/transporte-lista.co
 
  const APP_ROUTES: Routes = [
   { path: 'transporte/:id', component: TransporteComponent },
+  { path: 'transporte', component: TransporteComponent },
+  { path: 'transporteLista', component: TransporteListaComponent },
   { path: 'home', component: HomeComponent },
   {
     path: '',

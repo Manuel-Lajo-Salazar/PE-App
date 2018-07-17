@@ -1,23 +1,42 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="loggedIn()">
+
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="true">
     <a class="navbar-brand" outerLinkActive="active" [routerLink]="['/home']">Prime Express</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
+        <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse" id="navbarsExample02">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" routerLinkActive="active" [routerLink]="['/transporte']">Transporte</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" routerLinkActive="active" [routerLink]="['/transporteLista']">Lista Transporte</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLinkActive="active" [routerLink]="['/entrega']">Entrega</a>
-            </li>
+            <li class="nav-item"><a class="nav-link" routerLinkActive="active" [routerLink]="['/transporte']">Transporte</a></li>
+            <li class="nav-item"><a class="nav-link" routerLinkActive="active" [routerLink]="['/transporteLista']">Lista Transporte</a></li>
+            <li class="nav-item"><a class="nav-link" routerLinkActive="active" [routerLink]="['/entrega']">Entrega</a></li>
         </ul>
-        <form class="form-inline my-2 my-md-0">
+        <!-- <form class="form-inline my-2 my-md-0">
             <a class="btn btn-secondary" (click)="logout()">Sign up</a>
-        </form>
+        </form> -->
     </div>
 </nav>
+
+<!-- <nav class="navbar navbar-default navbar-dark bg-dark">
+    <div class="container-fluid">
+        
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Brand</a>
+      </div>  
+      
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+          <li><a href="#">Link</a></li>
+          <li class="nav-item"><a class="nav-link" routerLinkActive="active" [routerLink]="['/transporte']">Transporte</a></li>
+          <li class="nav-item"><a class="nav-link" routerLinkActive="active" [routerLink]="['/transporteLista']">Lista Transporte</a></li>
+          <li class="nav-item"><a class="nav-link" routerLinkActive="active" [routerLink]="['/entrega']">Entrega</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav> -->

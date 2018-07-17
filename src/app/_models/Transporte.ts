@@ -1,6 +1,7 @@
 export class Transporte {
     constructor(
         public id: number = null,
+        public numero: string = null,
         public activo: boolean = false,
         public fechaSalida: Date = null,
         public fechaLlegada: Date = null,
@@ -19,33 +20,3 @@ export class Transporte {
         public tipoTransporte: number = null
     ) {}
 }
-
-// export class Transporte {
-//     constructor(
-//         public vehiculoId: number = null,
-//         public sucursalSalidaId: number = null,
-//         public sucursalLlegadaId: number = null,
-//         public choferId: number = null,
-//         public auxiliarId: number = null,
-//         public TipoTransporte: number = null
-//     ) {}
-// }
-
-// export interface Transporte {
-//     id: number;
-//     activo: boolean;
-//     fechaSalida: Date;
-//     fechaLlegada: Date;
-//     sucursalSalidaId: number;
-//     sucursalSalidaNombre: string;
-//     sucursalLlegadaId: number;
-//     sucursalLlegadaNombre: string;
-//     choferId: number;
-//     choferNombre: string;
-//     auxiliarId: number;
-//     auxiliarNombre: string;
-//     vehiculoId: number;
-//     placa: string;
-//     carga: string;
-//     volumetria: string;
-// }

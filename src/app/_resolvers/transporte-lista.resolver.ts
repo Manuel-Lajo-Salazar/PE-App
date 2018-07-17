@@ -14,7 +14,7 @@ export class TransporteListaResolver implements Resolve<Transporte[]> {
         private router: Router, private alertify: AlertifyService) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<Transporte[]> {
-        return this.transporteService.getTransportes().catch(error => {
+        return this.transporteService.getTransportes(null).catch(error => {
             this.alertify.error('Problem retrieving data');
             this.router.navigate(['/home']);
             return Observable.of(null);
